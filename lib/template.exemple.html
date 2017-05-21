@@ -1,0 +1,17 @@
+<template>
+   <h1>Exemple de template pour {{text}}</h1>
+   <div :class="class">
+      <input type="email" :value="emailAddress"/>
+   </div>
+   <ul ~if="contacts.length">
+      <li ~for="c in contacts"><button @click="sendMail(c.email)">{{c.name}}</button></li>
+   </ul>
+   <div ~else>Aucun contact</div>
+</template>
+
+
+Parser (DOMParser)
+Identifier des fragments
+Attacher les fragments à des spy
+Générer
+Attacher les événements
