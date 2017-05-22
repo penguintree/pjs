@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+   <head><title>test pascal js</title></head>
+   <body>
+      <p>hello</p>
+      
+      <div id="theBar"></div>
+      <button id="test">test</button>
+      
+      <script src="_loader.js"></script>
+      <!--<script src="main.js"></script>
+      <script src="requests.js"></script>
+      <script src="replacement.js"></script>
+      <script src="template.js"></script>
+      <script src="component.js"></script>-->
+      
+      <!--<script src="components/espacepublic/espace.public.js"></script>-->
+      
+      <script>
+         document.addEventListener('librairyLoaded', loadComponent);
+
+         function testSpy(){
+            var html = '<template><h1>Exemple de template pour {{text}}</h1><div :class="class"><input type="email" :value="emailAddress"/></div><ul ~if="contacts.length"><li ~for="c in contacts"><button @click="sendMail(c.email)">{{c.name}}</button></li></ul></template>';
+            
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(html, "text/html");
+            console.log(doc);
+         }
+
+         function loadComponent(){
+            var tag = document.createElement('script');
+            tag.setAttribute('src', 'components/espacepublic/espace.public.js');
+            tag.onload = run;
+            document.body.appendChild(tag);
+         }
+         
+         function run(){
+            var butt = document.getElementById('test');
+            butt.addEventListener('click', function(){
+               loadTest();
+            });
+            
+            var iStyle = 0;
+            var styles = [
+               'background-color: #00ff00;',
+               'border: 1px dotted #0c0c0c;',
+               'display: none;',
+               'border: 1px solid #ff0000;'
+            ];
+            
+            function loadTest(){
+               var barDiv = document.getElementById('theBar');
+               var model = { description: 'pjs', reste : 8, total: 12, style: 'border: 1px solid #ff0000;' };
+               espacePublic.load(barDiv, model).then(function (){               
+                  var interval = window.setInterval(function(){
+                     var s = styles[iStyle];
+                     iStyle += 1;
+                     if (iStyle >= styles.length){
+                        iStyle = 0;
+                     }
+                     model.style = s;
+                     model.reste = model.reste - 1;
+                     model.total = model.total + 1;
+                     console.log(model.reste);
+                     if (!model.reste){
+                        window.clearInterval(interval);
+                     }
+                  }, 1000);
+               });
+            }
+            
+            
+            /*
+            var handler = {
+               get: function(target, name){
+                  console.log(handler, target, name, target[name]);
+                  return target[name];
+               },
+               set: function(target, name){
+                  console.log('set', handler, target, name, target[name]);
+                  return target[name];
+               }
+            }
+            
+            var a = {
+               a: 1,
+               b: 2,
+               c: 3
+            };
+            var p = new Proxy(a, handler);
+            
+            console.log(p.a);
+            p.a = 10;
+            console.log(p.a);
+            */
+         }
+      </script>
+   </body>
+</html>
