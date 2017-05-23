@@ -5,9 +5,15 @@ goals :
 - non restrictive : may cohabit well with other javascript framework and vanilla js code
 - modularity. It must be possible to create components that lives alone. (1 component 1 file)
 
+server.js file is a nodejs server that loads the librairy and the demo at localhost:8080
+in order to run it, you must install npm modules 'connect' and 'serve-static'.
+
 Todos :
 - two-way bindings for inputs
 - Handle all object levels in spies (currently just first-level properties can be watched)
 - events
+- Unit tests
+- linter ?
 - ...
+- DOC!
 - custom tags to load components (like <pjs-my-component>)

@@ -1,4 +1,4 @@
-(function(lib){
+(function(){
    var def = {
      template: {
         url: '/components/espacepublic/espace.public.html'
@@ -10,9 +10,9 @@
      //   reste: 8
      //},
      events: {
-        
-     }        
+
+     }
    }
-   
-   window.espacePublic = lib.createComponent(def);
-})(window.pjs);
+
+   window.espacePublic = pjs.createComponent(def);
+})(pjs);
