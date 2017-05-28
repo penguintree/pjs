@@ -4,7 +4,7 @@
    <body>
       <p>hello</p>
 
-      <div id="theBar"></div>
+      <div id="container"></div>
       <button id="test">test</button>
 
       <script src="_loader.js"></script>
@@ -17,61 +17,38 @@
       <!--<script src="components/espacepublic/espace.public.js"></script>-->
 
       <script>
+
          document.addEventListener('librairyLoaded', loadComponent);
-
-         function testSpy(){
-            var html = '<template><h1>Exemple de template pour {{text}}</h1><div :class="class"><input type="email" :value="emailAddress"/></div><ul ~if="contacts.length"><li ~for="c in contacts"><button @click="sendMail(c.email)">{{c.name}}</button></li></ul></template>';
-
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(html, "text/html");
-            console.log(doc);
-         }
 
          function loadComponent(){
             var tag = document.createElement('script');
-            tag.setAttribute('src', 'components/espacepublic/espace.public.js');
+            tag.setAttribute('src', 'components/inputsDemo/inputs.demo.js');
             tag.onload = run;
             document.body.appendChild(tag);
          }
 
          function run(){
-            var butt = document.getElementById('test');
-            butt.addEventListener('click', function(){
+            var testButton = document.getElementById('test');
+            testButton.addEventListener('click', function(){
                loadTest();
             });
 
-            var iStyle = 0;
-            var styles = [
-               'background-color: #00ff00;',
-               'border: 1px dotted #0c0c0c;',
-               'display: none;',
-               'border: 1px solid #ff0000;'
-            ];
-
             function loadTest(){
-               var barDiv = document.getElementById('theBar');
+               var div = document.getElementById('container');
+
                var model = {
-                  description: 'pjs',
-                  reste : 8,
-                  total: 12,
-                  style: 'border: 1px solid #ff0000;',
-                  patate: 'patate'
-               };
-               espacePublic.load(barDiv, model).then(function (){
-                  var interval = window.setInterval(function(){
-                     var s = styles[iStyle];
-                     iStyle += 1;
-                     if (iStyle >= styles.length){
-                        iStyle = 0;
-                     }
-                     model.style = s;
-                     model.reste = model.reste - 1;
-                     model.total = model.total + 1;
-                     console.log(model.reste);
-                     if (!model.reste){
-                        window.clearInterval(interval);
-                     }
-                  }, 1000);
+                  textValue: "text",
+                  emailValue: "batman@adamwest.com",
+                  numberInput: "666",
+                  dateValue: new Date(),
+                  radioA: true,
+                  radioB: false,
+                  checkboxValue: true,
+                  textAreaValue: "text area",
+                  selection: 2
+               }
+               inputDemo.load(div, model).then(function (){
+                  console.log('component loaded')
                });
             }
 

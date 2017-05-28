@@ -1,0 +1,42 @@
+<template>
+   <ul>
+      <li>
+         <label for="textInput">input text</label><input type="text" id="textInput" :value="textValue"></input>
+         <span class="actualValue">{{textValue}}</span>
+      </li>
+      <li>
+         <label for="emailInput">input email</label><input type="email" id="emailInput" :value="emailValue"></input>
+         <span class="actualValue">{{emailValue}}</span>
+      </li>
+      <li>
+         <label for="numberInput">input number</label><input type="number" id="numberInput" :value="numberValue"></input>
+         <span class="actualValue">{{numberValue}}</span>
+      </li>
+      <li>
+         <label for="dateInput">input date</label><input type="date" id="dateInput" :value="dateValue"></input>
+         <span class="actualValue">{{dateValue}}</span>
+      </li>
+      <li>
+            <label for="radioA">input radio A</label><input type="radio" name="radio" value="A" :checked="radioA"></input><span class="actualValue">{{radioA}}</span>
+            <label for="radioB">input radio B</label><input type="radio" name="radio" value="B" :checked="radioB"></input><span class="actualValue">{{radioB}}</span>
+      </li>
+      <li>
+         <label for="checkboxInput">input checkbox</label><input type="checkbox" id="checkboxInput" value="CHECKED" :checked="checkboxValue"></input>
+         <span class="actualValue">{{checkboxValue}}</span>
+      </li>
+      <li>
+         <label for="textArea">textArea</label><textarea id="textArea" :value="textAreaValue">{{textAreaValue}}</textarea>
+         <span class="actualValue">{{textAreaValue}}</span>
+      </li>
+      <li>
+         <label for="select">select</label>
+         <select :value="selection">
+            <option value="0">zero</option>
+            <option value="1">one</option>
+            <option value="2" selected>two</option>
+            <option value="3">three</option>
+         </select>
+         <span class="actualValue">{{selection}}</span>
+      </li>
+   </ul>
+</template>
