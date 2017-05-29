@@ -17,15 +17,15 @@
          <span class="actualValue">{{dateValue}}</span>
       </li>
       <li>
-            <label for="radioA">input radio A</label><input type="radio" name="radio" value="A" :checked="radioA"></input><span class="actualValue">{{radioA}}</span>
-            <label for="radioB">input radio B</label><input type="radio" name="radio" value="B" :checked="radioB"></input><span class="actualValue">{{radioB}}</span>
+            <label for="radioA">input radio A</label><input id="radioA" type="radio" name="radio" value="A" :checked="radioA"></input><span class="actualValue">{{radioA}}</span>
+            <label for="radioB">input radio B</label><input id="radioB" type="radio" name="radio" value="B" :checked="radioB"></input><span class="actualValue">{{radioB}}</span>
       </li>
       <li>
          <label for="checkboxInput">input checkbox</label><input type="checkbox" id="checkboxInput" value="CHECKED" :checked="checkboxValue"></input>
          <span class="actualValue">{{checkboxValue}}</span>
       </li>
       <li>
-         <label for="textArea">textArea</label><textarea id="textArea" :value="textAreaValue">{{textAreaValue}}</textarea>
+         <label for="textArea">textArea</label><textarea id="textArea" :value="textAreaValue"></textarea>
          <span class="actualValue">{{textAreaValue}}</span>
       </li>
       <li>
@@ -33,7 +33,7 @@
          <select :value="selection">
             <option value="0">zero</option>
             <option value="1">one</option>
-            <option value="2" selected>two</option>
+            <option value="2">two</option>
             <option value="3">three</option>
          </select>
          <span class="actualValue">{{selection}}</span>
