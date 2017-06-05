@@ -7,8 +7,6 @@
       <div id="container"></div>
       <button id="test">test</button>
 
-      <input type="number" value="666" id="number"></input>
-
       <script src="_loader.js"></script>
       <!--<script src="main.js"></script>
       <script src="requests.js"></script>
@@ -44,9 +42,12 @@
                var div = document.getElementById('container');
 
                var model = {
+                  deep:{
+                     value: "deep value"
+                  },
                   textValue: "text",
                   emailValue: "batman@adamwest.com",
-                  numberValue: "666",
+                  numberValue: 666,
                   dateValue: new Date(),
                   radioA: false,
                   radioB: true,

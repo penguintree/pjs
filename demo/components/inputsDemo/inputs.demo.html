@@ -1,6 +1,10 @@
 <template>
    <ul>
       <li>
+         <label for="deepInput">deep.value</label><input type="text" id="deepInput" :value="deep.value"></input>
+         <span class="actualValue">{{deep.value}}</span>
+      </li>
+      <li>
          <label for="textInput">input text</label><input type="text" id="textInput" :value="textValue"></input>
          <span class="actualValue">{{textValue}}</span>
       </li>
