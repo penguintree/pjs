@@ -25,7 +25,7 @@
             <label for="radioB">input radio B</label><input id="radioB" type="radio" name="radio" value="B" :checked="radioB"></input><span class="actualValue">{{radioB}}</span>
       </li>
       <li>
-         <label for="checkboxInput">input checkbox</label><input type="checkbox" id="checkboxInput" value="CHECKED" :checked="checkboxValue"></input>
+         <label for="checkboxInput">input checkbox</label><input @change="someEvent" type="checkbox" id="checkboxInput" value="CHECKED" :checked="checkboxValue"></input>
          <span class="actualValue">{{checkboxValue}}</span>
       </li>
       <li>
@@ -41,6 +41,9 @@
             <option value="3">three</option>
          </select>
          <span class="actualValue">{{selection}}</span>
+      </li>
+      <li>
+         <button @click="someEvent">event test</button>
       </li>
    </ul>
 </template>
