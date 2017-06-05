@@ -4,6 +4,13 @@
         url: '/components/inputsDemo/inputs.demo.html'
      },
      methods: {
+        someMethod: function() {
+           console.log('method called');
+        },
+        someEvent:function(e){
+           console.log('event triggered', e);
+           this.someMethod();
+        }
      },
      events: {
 
