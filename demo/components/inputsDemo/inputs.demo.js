@@ -5,7 +5,7 @@
      },
      methods: {
         someMethod: function() {
-           console.log('method called');
+           console.log('method called', this.model.textValue);
         },
         someEvent:function(e){
            console.log('event triggered', e);

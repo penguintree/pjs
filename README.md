@@ -9,9 +9,6 @@ server.js file is a nodejs server that loads the librairy and the demo at localh
 in order to run it, you must install npm modules 'connect' and 'serve-static'.
 
 Todos :
-- two-way bindings for inputs
-- Handle all object levels in spies (currently just first-level properties can be watched)
-- events
 - Unit tests
 - linter ?
 - ...
