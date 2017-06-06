@@ -1,4 +1,4 @@
-(function(){
+(function(pjs){
    var def = {
      template: {
         url: '/components/inputsDemo/inputs.demo.html'
@@ -18,4 +18,4 @@
    }
 
    window.inputDemo = pjs.createComponent(def);
-})(pjs);
+})(window.pjs);
