@@ -44,6 +44,17 @@
          <span class="actualValue">{{selection}}</span>
       </li>
       <li>
+         <input type="number" :value="range.min"><input type="number" :value="range.max" />
+         <label for="range">range</label>
+         <input type="range" id="range" :min="range.min" :max="range.max" :value="range.value" />
+         <span class="actualValue">{{range.value}}</span>
+      </li>
+      <li>
+         <label for="color">color</label>
+         <input type="color" id="color" :value="color"/>
+         <span class="actualValue">{{color}}</span>
+      </li>
+      <li>
          <button @click="someEvent">event test</button>
       </li>
    </ul>
