@@ -9,8 +9,9 @@ server.js file is a nodejs server that loads the librairy and the demo at localh
 in order to run it, you must install npm modules 'connect' and 'serve-static'.
 
 Todos :
+- Ensure 'use strict' is in every file
 - Unit tests
 - linter ?
 - ...
 - DOC!
-- custom tags to load components (like <pjs-my-component>)
+- custom tags to load components (like <pjs-my-component>) (almost done, see template.components.parser.js)
