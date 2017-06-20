@@ -11,6 +11,7 @@ in order to run it, you must install npm modules 'connect' and 'serve-static'.
 Todos :
 - Ensure 'use strict' is in every file
 - Unit tests
+- Uniform object creation (use of 'new' of creator function)
 - linter ?
 - ...
 - DOC!
