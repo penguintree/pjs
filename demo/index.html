@@ -2,103 +2,82 @@
 <html>
    <head><title>test pascal js</title></head>
    <body>
-      <p>hello</p>
-
-      <div id="theBar"></div>
-      <button id="test">test</button>
-
-      <script src="_loader.js"></script>
-      <!--<script src="main.js"></script>
-      <script src="requests.js"></script>
-      <script src="replacement.js"></script>
-      <script src="template.js"></script>
-      <script src="component.js"></script>-->
-
-      <!--<script src="components/espacepublic/espace.public.js"></script>-->
 
       <script>
-         document.addEventListener('librairyLoaded', loadComponent);
+         var obj = { p: 1 };
+         
+      </script>
 
-         function testSpy(){
-            var html = '<template><h1>Exemple de template pour {{text}}</h1><div :class="class"><input type="email" :value="emailAddress"/></div><ul ~if="contacts.length"><li ~for="c in contacts"><button @click="sendMail(c.email)">{{c.name}}</button></li></ul></template>';
+      <p>hello</p>
 
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(html, "text/html");
-            console.log(doc);
+      <div id="container"></div>
+      <div id="actions" style="visibility: hidden">
+         <button id="testInputs">test inputs</button>
+         <button id="testElem">test custom elements</button>
+      </div>
+
+      <script src="_loader.js"></script>
+
+      <script>
+
+         document.addEventListener('librairyLoaded', displayButtons);
+
+         function displayButtons(){
+            document.getElementById('testInputs').addEventListener('click', loadInputComponent);
+            document.getElementById('testElem').addEventListener('click', loadElementComponent);
+
+            document.getElementById('actions').style = "";
          }
 
-         function loadComponent(){
-            var tag = document.createElement('script');
-            tag.setAttribute('src', 'components/espacepublic/espace.public.js');
-            tag.onload = run;
-            document.body.appendChild(tag);
+         function loadElementComponent(){
+            addScript('components/customElements/custom.elements.js', runCustomElems);
          }
 
-         function run(){
-            var butt = document.getElementById('test');
-            butt.addEventListener('click', function(){
-               loadTest();
-            });
+         function loadInputComponent(){
+            addScript('components/inputsDemo/inputs.demo.js', runInputComp);
+         }
 
-            var iStyle = 0;
-            var styles = [
-               'background-color: #00ff00;',
-               'border: 1px dotted #0c0c0c;',
-               'display: none;',
-               'border: 1px solid #ff0000;'
-            ];
-
-            function loadTest(){
-               var barDiv = document.getElementById('theBar');
-               var model = {
-                  description: 'pjs',
-                  reste : 8,
-                  total: 12,
-                  style: 'border: 1px solid #ff0000;',
-                  patate: 'patate'
-               };
-               espacePublic.load(barDiv, model).then(function (){
-                  var interval = window.setInterval(function(){
-                     var s = styles[iStyle];
-                     iStyle += 1;
-                     if (iStyle >= styles.length){
-                        iStyle = 0;
-                     }
-                     model.style = s;
-                     model.reste = model.reste - 1;
-                     model.total = model.total + 1;
-                     console.log(model.reste);
-                     if (!model.reste){
-                        window.clearInterval(interval);
-                     }
-                  }, 1000);
-               });
-            }
-
-
-            /*
-            var handler = {
-               get: function(target, name){
-                  console.log(handler, target, name, target[name]);
-                  return target[name];
-               },
-               set: function(target, name){
-                  console.log('set', handler, target, name, target[name]);
-                  return target[name];
-               }
-            }
-
-            var a = {
-               a: 1,
-               b: 2,
-               c: 3
+         function runCustomElems(){
+            var div = document.getElementById('container');
+            var model = {
+               text: 'text'
             };
-            var p = new Proxy(a, handler);
+            customElem.load(div, model);
+         }
 
-            console.log(p.a);
-            p.a = 10;
-            console.log(p.a);
-            */
+         function runInputComp(){
+            var div = document.getElementById('container');
+
+            var model = {
+               deep:{
+                  value: "deep value"
+               },
+               textValue: "text",
+               emailValue: "batman@adamwest.com",
+               numberValue: 666,
+               dateValue: new Date(),
+               radioA: false,
+               radioB: true,
+               checkboxValue: true,
+               textAreaValue: "text area",
+               selection: 2,
+               range:{
+                  min: 10,
+                  max: 30,
+                  value: 15
+               },
+               color: '#f50344'
+            }
+            inputDemo.load(div, model).then(function (){
+               console.log('component loaded')
+            });
+         }
+
+         function addScript(path, then){
+            var tag = document.createElement('script');
+            tag.setAttribute('src', path);
+            tag.onload = then;
+            document.body.appendChild(tag);
          }
       </script>
    </body>

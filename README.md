@@ -9,11 +9,10 @@ server.js file is a nodejs server that loads the librairy and the demo at localh
 in order to run it, you must install npm modules 'connect' and 'serve-static'.
 
 Todos :
-- two-way bindings for inputs
-- Handle all object levels in spies (currently just first-level properties can be watched)
-- events
+- Ensure 'use strict' is in every file
 - Unit tests
+- Uniform object creation (use of 'new' of creator function)
 - linter ?
 - ...
 - DOC!
-- custom tags to load components (like <pjs-my-component>)
+- custom tags to load components (like <pjs-my-component>) (almost done, see template.components.parser.js)
