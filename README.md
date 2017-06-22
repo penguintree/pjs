@@ -10,6 +10,10 @@ in order to run it, you must install npm modules 'connect' and 'serve-static'.
 
 Todos :
 - Ensure 'use strict' is in every file
+- Cross browser :
+   - Edge : input number dont update the model when up/down arrows are used.
+   - IE needs a promise polyfill
+   - Test page does not works on iPad (problem with loader script)
 - Unit tests
 - Uniform object creation (use of 'new' of creator function)
 - linter ?
