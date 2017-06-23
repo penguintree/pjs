@@ -2,32 +2,17 @@
 <html>
    <head><title>test pascal js</title></head>
    <body>
-
-      <script>
-         var obj = { p: 1 };
-         
-      </script>
-
-      <p>hello</p>
-
       <div id="container"></div>
-      <div id="actions" style="visibility: hidden">
+      <div id="actions">
          <button id="testInputs">test inputs</button>
          <button id="testElem">test custom elements</button>
       </div>
 
-      <script src="_loader.js"></script>
+      <script src="pjs-0.0.1.js"></script>
 
       <script>
-
-         document.addEventListener('librairyLoaded', displayButtons);
-
-         function displayButtons(){
-            document.getElementById('testInputs').addEventListener('click', loadInputComponent);
-            document.getElementById('testElem').addEventListener('click', loadElementComponent);
-
-            document.getElementById('actions').style = "";
-         }
+         document.getElementById('testInputs').addEventListener('click', loadInputComponent);
+         document.getElementById('testElem').addEventListener('click', loadElementComponent);
 
          function loadElementComponent(){
             addScript('components/customElements/custom.elements.js', runCustomElems);

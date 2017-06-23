@@ -6,14 +6,17 @@ goals :
 - modularity. It must be possible to create components that lives alone. (1 component 1 file)
 
 server.js file is a nodejs server that loads the librairy and the demo at localhost:8080
-in order to run it, you must install npm modules 'connect' and 'serve-static'.
+In order to run it, you must install npm modules 'connect' and 'serve-static'.
+
+lib/build.pjs generate pjs-<version>.js and pjs-<version>.min.js in \_\_dist folder.
+In order to run it, you must install npm modules 'bundle-js' and 'uglify-js'.
+
+Nodejs should be at a reasonably recent version. To install last version via package manager on different linux distributions, see https://nodejs.org/en/download/package-manager/
 
 Todos :
-- Ensure 'use strict' is in every file
 - Cross browser :
    - Edge : input number dont update the model when up/down arrows are used.
    - IE needs a promise polyfill
-   - Test page does not works on iPad (problem with loader script)
 - Unit tests
 - Uniform object creation (use of 'new' of creator function)
 - linter ?
