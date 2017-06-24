@@ -1,6 +1,0 @@
-À réfléchir...
-
-tick.start propertySpy.set et tick.stop dans objectSpy.trigger.
-+ L'interval ne roulerait pas toujours, possiblement plus performant.
-- Le start et le stop sont répartis sur plusieurs objets... est-ce leur responsabilités ?
-- Possibilité de manquer des changements ?
