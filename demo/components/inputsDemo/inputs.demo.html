@@ -58,4 +58,8 @@
          <button @click="someEvent">event test</button>
       </li>
    </ul>
+   <div style="border: 1px dotted #00ff00; width: 300px; heigth: 100px">
+      The next section is visible only when the checkbox is checked
+      <div style="border: 1px solid #0000ff; margin: 5px;" ~if="checkboxValue">boo</div>
+   </div>
 </template>
