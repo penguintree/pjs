@@ -5,6 +5,8 @@
 
       <a href="tests.html">Test suite</a>
       <br />
+      <strong id="ready" style="visibility: hidden;">ready</strong>
+      <br />
 
       <div id="container"></div>
       <div id="actions">
@@ -12,9 +14,14 @@
          <button id="testElem">test custom elements</button>
       </div>
 
-      <script src="pjs-0.0.1.js"></script>
+      <!--<script src="__dist/pjs-0.0.1.js"></script>-->
+      <script src="_loader.js"></script>
 
       <script>
+         document.addEventListener('librairyLoaded', function(){
+            document.getElementById('ready').style = '';
+         });
+
          document.getElementById('testInputs').addEventListener('click', loadInputComponent);
          document.getElementById('testElem').addEventListener('click', loadElementComponent);
 
