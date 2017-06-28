@@ -8,12 +8,27 @@
       <script src="jasmine-2.6.4/jasmine-html.js"></script>
       <script src="jasmine-2.6.4/boot.js"></script>
 
-      <script src="pjs-0.0.1.js"></script>
-      
+      <!--<script src="pjs-0.0.1.js"></script>
+
       <script src="mocks/tick.mock.js"></script>
 
-      <script src="foundations/spies/objectSpy.spec.js"></script>
+      <script src="foundations/spies/objectSpy.spec.js"></script>-->
+
+      <script src="_loader.js"></script>
    </head>
    <body>
+      <script>
+         var testScripts = [
+            "mocks/tick.mock.js",
+            "foundations/spies/objectSpy.spec.js"
+         ];
+         document.addEventListener('librairyLoaded', function(){
+            for(var i = 0 ; i < testScripts.length ; i++){
+               var script = document.createElement('script');
+               script.setAttribute('src', testScripts[i]);
+               document.body.append(script);
+            }
+         });
+      </script>
    </body>
 </html>

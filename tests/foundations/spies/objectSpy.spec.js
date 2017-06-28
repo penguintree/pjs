@@ -1,6 +1,6 @@
 describe('objectSpy.js', function(){
    'use strict';
-   
+
    var objectSpy = window.pjs.spy.objectSpy
    var tick = new window.mocks.Tick();
 
@@ -311,7 +311,21 @@ describe('objectSpy.js', function(){
       xit('object prop - reference changed - can still spy on childs', function(){
       });
 
-      xit('array prop - push item - event triggered', function(){
+      xit('observe array length - event trigger when content change', function(){
+         var model = { prop: [1, 2, 3] };
+         var spy = objectSpy(model, tick);
+
+         var handler = jasmine.createSpy('spyHandler');
+         spy.register('prop.length', handler);
+
+         array.push(5);
+
+         expect(handler).toHaveBeeCalled();
+         expect(handler.calls.count()).toBe(1);
+
+      });
+
+      it('array prop - push item - event triggered', function(){
          var model = { prop: [1, 2, 3] };
          var spy = objectSpy(model, tick);
 
@@ -325,7 +339,7 @@ describe('objectSpy.js', function(){
          expect(handler.calls.count()).toBe(1);
       });
 
-      xit('array prop - pop item - event triggered', function(){
+      it('array prop - pop item - event triggered', function(){
          var model = { prop: [1, 2, 3] };
          var spy = objectSpy(model, tick);
 
@@ -340,23 +354,51 @@ describe('objectSpy.js', function(){
          expect(handler.calls.count()).toBe(1);
       });
 
-      xit('array prop - splice array - event triggered', function(){
+      it('array prop - splice array - event triggered', function(){
+         var model = { prop : [1, 2, 3, 4 ] };
+         var spy = objectSpy(model, tick);
+
+         var handler = jasmine.createSpy('spyHandler');
+         spy.register('prop', handler);
+
+         model.prop.splice(0, 2);
+         expect(model.prop.slice()).toEqual([3, 4]);
+         tick.$trigger();
+
+         expect(handler).toHaveBeenCalled();
+         expect(handler.calls.count()).toBe(1);
       });
 
       xit('array prop - set item - event triggered', function(){
+      });
+
+      xit('observing an array must not change the array', function(){
+         //When this test will pass, remove the .slice in other tests.
+
+         var a = [1,2,3];
+         var b = [1,2,3];
+
+         expect(a).toEqual(b);
+         a.observe(function(){});
+
+         expect(a).toEqual(b);
       });
 
       it('array prop - replace array - event triggered', function(){
          var model = { prop: [1, 2, 3] };
          var spy = objectSpy(model, tick);
 
-         var handler = jasmine.createSpy('spyHandler');
+         var handler = jasmine.createSpy('spyHandler').and.callFake(function(a, b){
+            expect(a.slice()).toEqual([1, 2, 3]);
+            expect(b.slice()).toEqual(['a', 'b', 'c']);
+         });
          spy.register('prop', handler);
 
          model.prop = ['a', 'b', 'c'];
          tick.$trigger();
 
-         expect(handler).toHaveBeenCalledWith([1, 2, 3], ['a', 'b', 'c']);
+         //expect(handler).toHaveBeenCalledWith([1, 2, 3], ['a', 'b', 'c']);
+         expect(handler).toHaveBeenCalled();
          expect(handler.calls.count()).toBe(1);
       });
 
@@ -370,6 +412,9 @@ describe('objectSpy.js', function(){
       });
 
       xit('array model - replace array - event triggered', function(){
+      });
+
+      xit('array model - observe length - event trigger when content change', function(){
       });
 
       xit('constructor - no model - throw', function(){
