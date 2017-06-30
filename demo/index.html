@@ -12,6 +12,7 @@
       <div id="actions">
          <button id="testInputs">test inputs</button>
          <button id="testElem">test custom elements</button>
+         <button id="testIterator">test iterators</button>
       </div>
 
       <!--<script src="__dist/pjs-0.0.1.js"></script>-->
@@ -24,6 +25,7 @@
 
          document.getElementById('testInputs').addEventListener('click', loadInputComponent);
          document.getElementById('testElem').addEventListener('click', loadElementComponent);
+         document.getElementById('testIterator').addEventListener('click', loadIteratorComponent);
 
          function loadElementComponent(){
             addScript('components/customElements/custom.elements.js', runCustomElems);
@@ -31,6 +33,19 @@
 
          function loadInputComponent(){
             addScript('components/inputsDemo/inputs.demo.js', runInputComp);
+         }
+
+         function loadIteratorComponent(){
+            addScript('components/iteratorDemo/iterator.demo.js', runIteratorComp);
+         };
+
+         function runIteratorComp(){
+            var div = document.getElementById('container');
+            var model = {
+               list: ["a", "b", "c"],
+               condition: true
+            };
+            iteratorDemo.load(div, model);
          }
 
          function runCustomElems(){
@@ -62,8 +77,7 @@
                   max: 30,
                   value: 15
                },
-               color: '#f50344',
-               array: ['a', 'b', 'c', 'd']
+               color: '#f50344'
             }
             inputDemo.load(div, model).then(function (){
                console.log('component loaded')

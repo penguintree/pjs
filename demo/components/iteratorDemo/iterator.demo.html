@@ -1,0 +1,9 @@
+<template>
+   <ul>
+      <li ~for="elem of list">
+         an element of the list
+         <div ~if="condition" style="display: inline-block;">conditional</div>
+      </li>
+   </ul>
+   <input type="checkbox" :checked="condition"></input>
+</tempate>

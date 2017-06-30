@@ -436,5 +436,8 @@ describe('objectSpy.js', function(){
    describe('release', function(){
       xit('release handler - all handler removed', function(){
       });
+
+      xit('release handler - child spy released', function(){
+      });
    });
 });
