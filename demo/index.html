@@ -10,9 +10,9 @@
 
       <div id="container"></div>
       <div id="actions">
-         <button id="testInputs">test inputs</button>
-         <button id="testElem">test custom elements</button>
-         <button id="testIterator">test iterators</button>
+         <button id="testInputs" data-demo="inputDemo">test inputs</button>
+         <button id="testElem" data-demo="customElements">test custom elements</button>
+         <button id="testIterator" data-demo="iteratorsDemo">test iterators</button>
       </div>
 
       <!--<script src="__dist/pjs-0.0.1.js"></script>-->
@@ -23,21 +23,28 @@
             document.getElementById('ready').style = '';
          });
 
-         document.getElementById('testInputs').addEventListener('click', loadInputComponent);
-         document.getElementById('testElem').addEventListener('click', loadElementComponent);
-         document.getElementById('testIterator').addEventListener('click', loadIteratorComponent);
-
-         function loadElementComponent(){
-            addScript('components/customElements/custom.elements.js', runCustomElems);
+         var components = {
+            customElements: {
+               script: 'components/customElements/custom.elements.js',
+               callback: runCustomElems
+            },
+            inputDemo:{
+               script: 'components/inputsDemo/inputs.demo.js',
+               callback: runInputComp
+            },
+            iteratorsDemo:{
+               script: 'components/iteratorDemo/iterator.demo.js',
+               callback: runIteratorComp
+            }
          }
 
-         function loadInputComponent(){
-            addScript('components/inputsDemo/inputs.demo.js', runInputComp);
-         }
-
-         function loadIteratorComponent(){
-            addScript('components/iteratorDemo/iterator.demo.js', runIteratorComp);
-         };
+         document.querySelectorAll('[data-demo]').forEach(function(button){
+            button.addEventListener('click', function(){
+               var demo = button.dataset.demo;
+               var c = components[demo];
+               addScript(demo, c.script, c.callback);
+            });
+         });
 
          function runIteratorComp(){
             var div = document.getElementById('container');
@@ -84,11 +91,17 @@
             });
          }
 
-         function addScript(path, then){
-            var tag = document.createElement('script');
-            tag.setAttribute('src', path);
-            tag.onload = then;
-            document.body.appendChild(tag);
+         function addScript(id, path, then){
+            var id = "componentScript" + id;
+            if(!document.getElementById(id)){
+               var tag = document.createElement('script');
+               tag.setAttribute('id', id);
+               tag.setAttribute('src', path);
+               tag.onload = then;
+               document.body.appendChild(tag);
+            } else {
+               then();
+            }
          }
       </script>
    </body>
