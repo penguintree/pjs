@@ -1,10 +1,12 @@
 <template>
-   <ul>
-      <li ~for="elem of list">
-         an element of the list
-         {{condition}}
-         <div ~if="condition" style="display: inline-block;">conditional</div>
-      </li>
-   </ul>
-   <input type="checkbox" :checked="condition"></input>
+   <div>
+      <ul>
+         <li ~for="elem of list">
+            an element of the list
+            {{condition}}
+            <div ~if="condition" style="display: inline-block;">conditional</div>
+         </li>
+      </ul>
+      <input type="checkbox" :checked="condition"></input>
+   </div>
 </tempate>
