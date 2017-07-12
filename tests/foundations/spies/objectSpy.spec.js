@@ -439,5 +439,8 @@ describe('objectSpy.js', function(){
 
       xit('release handler - child spy released', function(){
       });
+
+      xit('relase hanlder - spy does not keep any reference to the handlers', function(){
+      });
    });
 });
