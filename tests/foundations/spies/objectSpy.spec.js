@@ -430,6 +430,115 @@ describe('objectSpy.js', function(){
       });
    });
 
+   //------------------------
+   //---- array shortcuts----
+   //------------------------
+   describe('defineArrayShortcut', function(){
+
+      it('defineArrayShortcut - getValue on shortcut - return element', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+
+         var value = spy.getValue('potato');
+
+         expect(value).toEqual({ a: 2 });
+      });
+
+      it('defineArrayShortcut - getValue on shortcut property - return value', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+
+         var value = spy.getValue('potato.a');
+
+         expect(value).toBe(2);
+      });
+
+      it('defineArrayShortcut - setValue on shortcut - throws exception', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+
+         expect(function() {
+            spy.setValue('potato', {});
+         }).toThrow();
+      });
+
+      it('defineArrayShortcut - setValue on property of element - value setted', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+
+         spy.setValue('potato.a', 6);
+
+         expect(model.list[1].a).toBe(6);
+      });
+
+      it('defineArrayShortcut - register on shortcut - handler called', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+         var handler = jasmine.createSpy('spyHandler');
+
+         spy.register('potato.a', handler);
+
+         model.list[1].a = 5;
+         tick.$trigger();
+
+         expect(handler).toHaveBeenCalled();
+         expect(handler.calls.count()).toBe(1);
+      });
+
+      it('defineArrayShortcut - shorcut already used - throws', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ]
+         };
+
+         var spy = objectSpy(model, tick);
+
+         spy.defineArrayShortcut('list', 1, 'potato');
+
+         expect(function(){
+            spy.defineArrayShortcut('list', 2, 'potato');
+         }).toThrow();
+      });
+
+      it('defineArrayShortcut - shortcut name is property - throws', function(){
+         var model = {
+            list: [ { a: 1 }, { a: 2 }, { a: 3 } ],
+            potato: 1
+         };
+
+         var spy = objectSpy(model, tick);
+
+         expect(function(){
+            spy.defineArrayShortcut('list', 2, 'potato');
+         }).toThrow();
+      });
+
+   });
+
    // ------------------------
    // ------- release --------
    // ------------------------
@@ -441,6 +550,9 @@ describe('objectSpy.js', function(){
       });
 
       xit('relase hanlder - spy does not keep any reference to the handlers', function(){
+      });
+
+      xit('release handler - shortcuts cleared', function(){
       });
    });
 });
