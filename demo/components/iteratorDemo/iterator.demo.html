@@ -2,9 +2,19 @@
    <div>
       <ul>
          <li ~for="elem of list">
-            an element of the list
+            an element of the list : {{elem.title}}
             {{condition}}
             <div ~if="condition" style="display: inline-block;">conditional</div>
+            <ul>
+               <li ~for="sub of elem.list">
+                  {{sub.title}}
+                  <ul>
+                     <li ~for="ssub of sub.list">
+                        {{ssub.title}}
+                     </li>
+                  </ul>
+               </li>
+            </ul>
          </li>
       </ul>
       <input type="checkbox" :checked="condition"></input>

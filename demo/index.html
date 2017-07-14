@@ -49,7 +49,16 @@
          function runIteratorComp(){
             var div = document.getElementById('container');
             var model = {
-               list: ["a", "b", "c"],
+               list: [{
+                  title: "a",
+                  list: [{ title: "1" }, { title: "2" }]
+               }, {
+                  title: "b",
+                  list: [{ title: "3" }, { title: "4", list: [{ title: "A" }] }]
+               }, {
+                  title: "c",
+                  list: []
+               }],
                condition: true
             };
             iteratorDemo.load(div, model);

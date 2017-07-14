@@ -14,6 +14,8 @@ In order to run it, you must install npm modules 'bundle-js' and 'uglify-js'.
 Nodejs should be at a reasonably recent version. To install last version via package manager on different linux distributions, see https://nodejs.org/en/download/package-manager/
 
 Todos :
+- react to array mutation in ~for (push, pop, etc.)
+- Expression and nonconfigurable props in ~if (e.g. ~if="array.length" or ~if="fct1() || fct2()")
 - Cross browser :
    - Edge : input number dont update the model when up/down arrows are used.
    - IE needs a promise polyfill
